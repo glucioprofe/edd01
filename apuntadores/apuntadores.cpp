@@ -8,21 +8,29 @@ struct nodo {
     int telefono;
     struct nodo *sig;
 };
-struct nodo *cab, *aux;
+struct nodo *cab, *aux, *aux2;
 void registrar(){
     //alumno.codigo = 1;
     aux = (struct nodo *) malloc(sizeof(struct nodo));
-    cout<<"Cual es año el telefono: ";
+    cout<<"Cual es el telefono: ";
     cin>>aux->telefono;
     aux->sig = NULL;
     if(cab==NULL){
         cab = aux;
+        cab->codigo=1;
         aux = NULL;
         free(aux);
     } else {
-        cab->sig = aux;
-        aux = NULL;
+        aux2 = cab;
+        while(aux2->sig!=NULL) //Lo que esto dice es que mientras aux2 no sea el ultimo
+        {
+            aux2 = aux2->sig;
+        }        
+        aux->codigo = aux2->codigo+1;
+        aux2->sig = aux;
+        aux2 = aux = NULL;
         free(aux);
+        free(aux2);
     }
 }
 void mostrar(){
