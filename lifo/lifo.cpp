@@ -24,12 +24,26 @@ registrar(){
 }
 
 mostrar(){
-        cout<<"Mostrar.... "<<endl;
+/*    cout<<"Mostrar.... "<<endl;
     for(aux=top; aux!=NULL; aux=aux->sig){
         cout<<"Dato "<<aux->valor<<endl;
     }
+*/  top2 = NULL;
+    while(top!=NULL){
+        cout<<"Dato: "<<top->valor<<endl;
+        if(top2!=NULL){
+            top2 = top;
+            top = top->sig;
+            top2->sig = NULL;
+        } else {
+            aux = top;
+            top = top->sig;
+            aux->sig = top2;
+            top2 = aux;
+        }
+    }
 }
-
+ 
 int main() {
     int opc;
     do {
